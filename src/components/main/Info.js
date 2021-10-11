@@ -31,12 +31,12 @@ class Info extends Component
 			this.props.setInfo(name,value)	
 			
 		}
-		random = (Min,Max) =>{
+		/*random = (Min,Max) =>{
 			var Range = Max - Min;   
 			var Rand = Math.random();   
 			return (Min + Math.round(Rand * Range));
-		}
-		handleRandom = () =>
+		}*/
+		/*handleRandom = () =>
 		{
 			const num1 = this.random(8,24);
 			var a=document.getElementById("HPPD");
@@ -51,7 +51,7 @@ class Info extends Component
 			a=document.getElementById("bedUnit");
 			a.value=num3;
 			this.props.setInfo("bedUnit",num3)	;
-		}
+		}*/
 
 	  render () {
 	    return (

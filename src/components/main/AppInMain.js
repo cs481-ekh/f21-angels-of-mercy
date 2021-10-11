@@ -18,7 +18,7 @@ class AppInMain extends Component {
 	   		}
    }	
 	
- calculation = (info,num) =>
+ /*calculation = (info,num) =>
  {
 
 	if(info.bedUnit!=='' && info.census!=='' && info.HPPD!=='' && num!=='')
@@ -38,7 +38,7 @@ class AppInMain extends Component {
 		}
 	}
  	
- }
+ }*/
  setInfo = (name,value) =>
  {
  	let info=this.state.info;
@@ -70,7 +70,7 @@ class AppInMain extends Component {
    return (
        <div className="AppInMain">
 		<Info props={this.state} setInfo={this.setInfo}/>
-		<StaffAdd staffs={this.state.staffs}  results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum}/>
+        <StaffAdd staffs={this.state.staffs} results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum} />
      </div>
    );
   }
