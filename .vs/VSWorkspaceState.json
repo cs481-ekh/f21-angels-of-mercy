@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\.github",
+    "\\.github\\workflows",
+    "\\public",
     "\\src",
     "\\src\\assets",
     "\\src\\components",
@@ -8,6 +11,6 @@
     "\\src\\components\\header",
     "\\src\\components\\main"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\src\\components\\main\\StaffAdd.js",
   "PreviewInSolutionExplorer": false
 }
