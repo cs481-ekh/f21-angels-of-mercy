@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import './index.css';
+
 import { Typography,Paragraph,Layout,Button  } from 'antd';
 import 'antd/dist/antd.css'
 class Info extends Component
@@ -22,7 +22,7 @@ class Info extends Component
 			{
 				if(!(/^\+?[1-9][0-9]*$/.test(value)))
 				{
-                    alert("Only numbers(positive integers) can be entered");
+					alert("Only numbers(positive integers) can be entered");
 					return;
 				}
 			}
