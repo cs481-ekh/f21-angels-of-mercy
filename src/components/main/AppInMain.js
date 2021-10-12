@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import StaffAdd from './StaffAdd'
+//import StaffAdd from './StaffAdd'
 import Info from './Info'
 
 class AppInMain extends Component {
