@@ -136,7 +136,7 @@ class Scenario extends React.Component {
                                 . You have  <input name="bedUnit" onChange={this.handleAdd} id="bedUnit" /> number of beds in your unit and your census is <input name="census" id="census" onChange={this.handleAdd} />% full. Based off of this scenario, 
                                 allocate your staffing resources.</Typography.Paragraph>
 							   <Typography.Paragraph style={this.state.center}>
-								<Button onClick={this.handleRandom}>Add Home Practice</Button>
+								
 								</Typography.Paragraph>
 							</Typography>
 						</Layout.Content>
