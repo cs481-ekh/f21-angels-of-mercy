@@ -136,7 +136,7 @@ class Scenario extends React.Component {
                     </Card.Body>
                 </Card>
             	
-            		<StaffAdd staffs={this.state.staffs}  results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum}/>
+                <StaffAdd staffs={this.state.staffs}  results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum}/>
 
             </div>
         );
