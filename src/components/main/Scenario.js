@@ -132,8 +132,8 @@ class Scenario extends React.Component {
 							<Typography>
 							   <Typography.Title style={this.state.center} >{this.state.title}</Typography.Title>
 							   <Typography.Paragraph style={this.state.center}>  
-                                The hospital unit is <input name="unit" id="unit" onChange={this.handleAdd} /> and the HPPD is <input  name="HPPD" id="HPPD" onChange={this.handleAdd} />
-                                . You have  <input name="bedUnit" onChange={this.handleAdd} id="bedUnit" /> number of beds in your unit and your census is <input name="census" id="census" onChange={this.handleAdd} />% full. Based off of this scenario, 
+                                The hospital unit is <input name="unit" data-testid="unit-id" id="unit" onChange={this.handleAdd} /> and the HPPD is <input  name="HPPD" data-testid="hppd-id" id="HPPD" onChange={this.handleAdd} />
+                                . You have  <input name="bedUnit" data-testid="numbeds-id" onChange={this.handleAdd} id="bedUnit" /> number of beds in your unit and your census is <input name="census" data-testid="census-id" id="census" onChange={this.handleAdd} />% full. Based off of this scenario, 
                                 allocate your staffing resources.</Typography.Paragraph>
 							   <Typography.Paragraph style={this.state.center}>
 								
