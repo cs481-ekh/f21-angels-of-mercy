@@ -1,6 +1,6 @@
 import React from 'react';
 import { Form, InputGroup, Card } from "react-bootstrap";
-import { Typography, Paragraph, Layout, Button } from 'antd';
+//import { Typography, Paragraph, Layout, Button } from 'antd';
 import './Scenario.css';
 import StaffAdd from './StaffAdd'
 
@@ -123,24 +123,18 @@ class Scenario extends React.Component {
         return (
             <div className="App">
 
-                    <Card id="scenario">
-                        <Card.Header>Fill out the scenario fields based off of the in-class example.</Card.Header>
-                    </Card>
-
-					<Layout>
-						<Layout.Content>
-							<Typography>
-							   <Typography.Title style={this.state.center} >{this.state.title}</Typography.Title>
-							   <Typography.Paragraph style={this.state.center}>  
-                                The hospital unit is <input name="unit" data-testid="unit-id" id="unit" onChange={this.handleAdd} /> and the HPPD is <input  name="HPPD" data-testid="hppd-id" id="HPPD" onChange={this.handleAdd} />
+                <Card id="scenario">
+                    <Card.Header>Fill out the scenario fields based off of the in-class example.</Card.Header>
+                    <Card.Body>
+                        <Form>
+                            <InputGroup size="sm" className="mb-3">
+                                The hospital unit is <input name="unit" data-testid="unit-id" id="unit" onChange={this.handleAdd} /> and the HPPD is <input name="HPPD" data-testid="hppd-id" id="HPPD" onChange={this.handleAdd} />
                                 . You have  <input name="bedUnit" data-testid="numbeds-id" onChange={this.handleAdd} id="bedUnit" /> number of beds in your unit and your census is <input name="census" data-testid="census-id" id="census" onChange={this.handleAdd} />% full. Based off of this scenario, 
-                                allocate your staffing resources.</Typography.Paragraph>
-							   <Typography.Paragraph style={this.state.center}>
-								
-								</Typography.Paragraph>
-							</Typography>
-						</Layout.Content>
-					</Layout>
+                                allocate your staffing resources.
+                            </InputGroup>
+                        </Form>
+                    </Card.Body>
+                </Card>
             	
             		<StaffAdd staffs={this.state.staffs}  results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum}/>
 
