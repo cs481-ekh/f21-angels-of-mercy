@@ -1,86 +1,126 @@
 import React from 'react';
-import { Form, InputGroup, Card } from "react-bootstrap";
+//import { Form, InputGroup, Card } from "react-bootstrap";
 import './Scenario.css';
 import StaffAdd from './StaffAdd'
-import Info from './Info'
+import StaffList from './StaffList'
+import Result from './Result'
+import RandomHPPDInfo from './RandomHPPDInfo'
 
 class Scenario extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            title:"BSU In-Patient Nurse Staffing Simulator",
-            results:"",
-            staffNum:"The Results:",
-            num:"",
+            results: "",
+            staffNum: "The Results:",
+            num: "",
+            center: { "text-align": 'center' },
             staffs: [],
-            info:{
-            	   unit:"",
-            	   HPPD:"",
-                bedUnit:"",
-                census:"",
-               }
+            info: {
+                unit: "",
+                HPPD: "",
+                bedUnit: "",
+                census: "",
+            }
         };
+
+        this.handleInputChange = this.handleInputChange.bind(this);
     }
 
-    changeHandler = (event) => {
-        let name = event.target.name;
-        let val = event.target.value;
-        this.setState({[name]: val});
+    handleStaffChange = (staff) => {
+        this.setState({ staffs: staff });
     }
-	
-	/*calculation = (info,num) =>
-	{
-	
-		if(info.bedUnit!=='' && info.census!=='' && info.HPPD!=='' && num!=='')
-		{
-			let result = (info.bedUnit*(info.census/100))*info.HPPD/12;
-			 console.log(num+":"+result)
-			if(parseInt(num)<=parseInt(result))
-			{
-				let show = `In line with budget`;
-			    this.setState({"results":show});
-			    this.setState({"staffNum":"The Results:"+num});
-			}else
-			{
-			     let show =`The rated budget has been exceeded`;
-			     this.setState({"results":show});
-			      this.setState({"staffNum":"The Results:"+num});
-			}
-		}
-		
-	}*/
-	
-	setInfo = (name,value) =>
-	{
-		let info=this.state.info;
-		if(name==='unit')
-		{
-			info.unit=value;
-		}else if(name==='HPPD')
-		{
-			info.HPPD=value;
-		}else if(name==='census')
-		{
-			info.census=value;
-		}else if(name==='bedUnit')
-		{
-			info.bedUnit=value;
-		}
-		this.setState({info:info});
-		this.calculation(info,this.state.num);
-	}
-	setInfoStaffNum = (num) =>
-	{
-		debugger;
-		this.setState({"num":num});
-		this.calculation(this.state.info,num);
-	}
-	
+    handleStaffAdd = (staffItem) => {
+
+        console.log(staffItem);
+        let staffCopy = [...this.state.staffs, staffItem];
+        this.setState({ staffs: staffCopy });
+
+    }
+
+    handleInfoChange = (info) => {
+        this.setState({ info: info });
+    }
+
+
+    handleInputChange(event) {
+
+        //Maybe look at using Formik library?
+        //https://react-bootstrap.github.io/components/forms/#forms-validation-native
+        //https://react-bootstrap.github.io/components/forms/#forms-validation-libraries
+
+        const target = event.target;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
+
+        if (name !== 'unit') {
+            if (value && !(/^\+?[1-9][0-9]*$/.test(value))) {
+                alert("Only numbers(positive integers) can be entered");
+                return;
+            }
+        }
+
+        //https://stackoverflow.com/questions/43638938/updating-an-object-with-setstate-in-react
+        this.setState(prevState => {
+            let info = Object.assign({}, prevState.info);   // creating copy of state variable info
+            info[name] = value;                             // update the name property, assign a new value                 
+            return { info };                                // return new object info object
+        })
+
+    }
+
     render() {
         return (
             <div className="App">
-            		<Info props={this.state} setInfo={this.setInfo}/>
-            		<StaffAdd staffs={this.state.staffs}  results={this.state.results} staffNum={this.state.staffNum} setInfoStaffNum={this.setInfoStaffNum}/>
+
+                <div className="row mt-5">
+
+                     <div className="col-md-3 col-sm-6 order-sm-last">
+                        <Result staffs={this.state.staffs} info={this.state.info} ></Result>
+                    </div>
+                    
+                    <div className="col-md-9 col-sm-6 order-sm-first">
+                        <form className="row">
+
+                            <div className="col-md-12">
+                                <label htmlFor="unit" className="form-label">Hospital unit</label>
+                                <input className="form-control" type="text" name="unit" id="unit" data-testid="unit-id" placeholder="Hospital Unit" onChange={this.handleInputChange} value={this.state.info.unit} />
+                            </div>
+
+                            <div className="col-md-4">
+                                <label htmlFor="HPPD" className="form-label">HPPD</label>
+                                <input className="form-control" type="text" name="HPPD" id="HPPD" data-testid="hppd-id" placeholder="HPPD" onChange={this.handleInputChange} value={this.state.info.HPPD} />
+                            </div>
+
+                            <div className="col-md-4">
+                                <label htmlFor="bedUnit" className="form-label">Number of beds</label>
+                                <input className="form-control" type="text" name="bedUnit" id="bedUnit" data-testid="numbeds-id" placeholder="Number of Beds" onChange={this.handleInputChange} value={this.state.info.bedUnit} />
+                            </div>
+
+                            <div className="col-md-4">
+                                <label htmlFor="census" className="form-label">Census</label>
+                                <input className="form-control" type="text" name="census" id="census" data-testid="census-id" placeholder="Census" onChange={this.handleInputChange} value={this.state.info.census} />
+                            </div>
+
+                        </form>
+                        <div className="row">
+                            <div className="col-md-4 mt-4 " >
+                                <StaffAdd onStaffChange={this.handleStaffChange} onStaffAdd={this.handleStaffAdd} staffs={this.state.staffs} />
+                            </div>
+                            <div className="col-md-4 mt-4 ">
+                                <RandomHPPDInfo onInfoChange={this.handleInfoChange} />
+                            </div>
+                        </div>
+
+                    </div>
+                    
+                    
+
+                </div>
+                <div className="row mt-5">
+                    <div className="col-md-9">
+                        <StaffList staffs={this.state.staffs} onStaffChangeOnUpdate={this.handleStaffChange} ></StaffList>
+                    </div>
+                </div>
             </div>
         );
     }
